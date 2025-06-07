@@ -2,7 +2,6 @@ import csv
 from datetime import datetime, time
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from app.models.weather import Weather, WindDirection
 
 engine = create_engine("sqlite:///app.db")
@@ -39,7 +38,7 @@ def load_weather_from_csv(file_path: str):
                 )
                 session.add(weather)
             except Exception as e:
-                print(f"Помилка при обробці рядка: {e}\nРядок: {row}")
+                print(f"Виникла помилка при обробці рядка: {e}\nРядок: {row}")
         session.commit()
     session.close()
 
