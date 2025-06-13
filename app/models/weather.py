@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Float, String, Enum, Date, Time
 import enum
-from app.models.base import Base
+from app.models import Base
 
 class WindDirection(enum.Enum):
     N = "N"

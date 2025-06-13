@@ -1,2 +1,7 @@
 sqlalchemy
 alembic
+pandas
+dotenv
+
+psycopg2
+pymysql
