@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, Float, String, Enum, Date, Time
+from sqlalchemy import Column, Integer, String, Float, Enum
 import enum
+from sqlalchemy.orm import relationship
 from app.models import Base
 
 class WindDirection(enum.Enum):
@@ -20,8 +21,5 @@ class Weather(Base):
     wind_degree = Column(Integer)
     wind_kph = Column(Float)
     wind_direction = Column(Enum(WindDirection))
-    last_updated = Column(Date)
-    sunrise = Column(Time)
-    sunset = Column(Time)
-    moonrise = Column(Time)
-    moonset = Column(Time)
+
+    celestial_changes = relationship("Celestial_Changes", back_populates="weather", cascade="all, delete")

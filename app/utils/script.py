@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import NoResultFound
-from app.models import Weather, SessionLocal, WindDirection
+from app.models import Weather, SessionLocal, WindDirection, Celestial_Events
 
 def read_weather_csv(file_path):
     df = pd.read_csv(file_path)
@@ -35,7 +35,7 @@ def fill_weather(df: pd.DataFrame):
                 session.add(weather)
                 session.commit()
 
-            weather_measurement = Weather(
+            celestial_event = Celestial_Events(
                 weather_id=weather.id,
                 wind_degree=int(row['wind_degree']) if not pd.isna(row['wind_degree']) else None,
                 wind_kph=float(row['wind_kph']) if not pd.isna(row['wind_kph']) else None,
@@ -47,7 +47,7 @@ def fill_weather(df: pd.DataFrame):
                 moonset=pd.to_datetime(row['moonset']).time() if not pd.isna(row['moonset']) else None,
                 go_outside=should_go_outside(float(row['wind_kph'])) if not pd.isna(row['wind_kph']) else None
             )
-            session.add(weather_measurement)
+            session.add(celestial_event)
 
         session.commit()
     except Exception as e:

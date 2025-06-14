@@ -4,8 +4,8 @@ from app.utils.get_weather import get_weather
 df = read_weather_csv("data/weather_data.csv")
 fill_weather(df)
 
-country = input("Enter the country: ").strip()
-date = input("Enter the date (YYYY-MM-DD): ").strip()
+country = input("Введіть країну: ").strip()
+date = input("Введіть місяць (рік, місяць, день): ").strip()
 
 result = get_weather(country, date)
 print(result)
